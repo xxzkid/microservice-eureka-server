@@ -58,7 +58,6 @@
                     <imageName>${project.artifactId}</imageName>
                     <baseImage>java:8</baseImage>
                     <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
-                    <!-- 指定Dockerfile所在的路径 -->
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
