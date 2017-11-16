@@ -11,6 +11,13 @@
 		<version>1.5.3.RELEASE</version>
 	</parent>
 
+	<scm>
+		<connection>scm:git:https://github.com/xxzkid/microservice-user-service.git</connection>
+		<developerConnection>scm:git:https://github.com/xxzkid/microservice-user-service.git</developerConnection>
+		<url>https://github.com/xxzkid/microservice-user-service/tree/master</url>
+		<tag>microservice-user-service-0.0.2</tag>
+	</scm>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -24,13 +31,13 @@
 	</dependencyManagement>
 
 	<properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <spring-cloud-bom.version>Dalston.SR1</spring-cloud-bom.version>
-        <docker.image.prefix>springcloud</docker.image.prefix>
-        <docker.host>http://192.168.1.105:2375</docker.host>
-    </properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-cloud-bom.version>Dalston.SR1</spring-cloud-bom.version>
+		<docker.image.prefix>springcloud</docker.image.prefix>
+		<docker.host>http://192.168.1.105:2375</docker.host>
+	</properties>
 
 
 	<dependencies>
@@ -39,41 +46,47 @@
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <!-- docker的maven插件，官网：https://github.com/spotify/docker-maven-plugin -->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.12</version>
-                <configuration>
-                    <dockerHost>${docker.host}</dockerHost>
-                    <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
-                    <!-- 详见：https://github.com/spotify/docker-maven-plugin    Invalid repository name ... only [a-z0-9-_.] are allowed-->
-                    <imageName>${project.artifactId}</imageName>
-                    <baseImage>java:8</baseImage>
-                    <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                    <forceTags>true</forceTags>
-                    <imageTags>
-                        <imageTag>${project.version}</imageTag>
-                        <imageTag>latest</imageTag>
-                    </imageTags>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- docker的maven插件，官网：https://github.com/spotify/docker-maven-plugin -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.12</version>
+				<configuration>
+					<dockerHost>${docker.host}</dockerHost>
+					<!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
+					<!-- 详见：https://github.com/spotify/docker-maven-plugin Invalid repository 
+						name ... only [a-z0-9-_.] are allowed -->
+					<imageName>${project.artifactId}</imageName>
+					<baseImage>java:8</baseImage>
+					<entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+					<forceTags>true</forceTags>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+						<imageTag>latest</imageTag>
+					</imageTags>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+			</plugin>
+		</plugins>
+	</build>
 
 
 </project>

@@ -8,8 +8,6 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://${eureka.host:localhost}:${server.port:8761}/eureka/
   instance:
-    hostname: ${APPLICATION_DOMAIN:microservice-eureka-server}
+    hostname: ${APPLICATION_DOMAIN:peer1}
     nonSecurePort: 80
