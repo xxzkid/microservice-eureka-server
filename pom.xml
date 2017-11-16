@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.xxz</groupId>
 	<artifactId>microservice-eureka-server</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -11,9 +11,9 @@
 	</parent>
 
 	<scm>
-		<connection>scm:git:https://github.com/xxzkid/microservice-user-service.git</connection>
-		<developerConnection>scm:git:https://github.com/xxzkid/microservice-user-service.git</developerConnection>
-		<url>https://github.com/xxzkid/microservice-user-service/tree/master</url>
+		<connection>scm:git:https://github.com/xxzkid/microservice-eureka-server.git</connection>
+		<developerConnection>scm:git:https://github.com/xxzkid/microservice-eureka-server.git</developerConnection>
+		<url>https://github.com/xxzkid/microservice-eureka-server/tree/master</url>
 		<tag>microservice-eureka-server-0.0.1</tag>
 	</scm>
 
